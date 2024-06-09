@@ -19,25 +19,15 @@ int main(){
 
         // if userInput is exit, exits shell
         if (userInput == "exit") {
-            std::cout << "Exiting shell\n";
             break;
         }
         // if user input contains pipes, creates 2+ processes
         // each process connected to last via pipe
         else if (userInput.find("|") != std::string::npos){
-            /* 
-            TO DO:
-            - split input at pipes
-            - check that correct number of arguments are there
-            */
-           startProcess(userInput);
+            startProcess(userInput);
         }
         // else, user would like to execute a file and shell will search for it
         else {
-            /* 
-            TO DO:
-            - error check there isn't more than 1 arg
-            */
             executeFile(userInput);
         }
     }

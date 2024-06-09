@@ -8,7 +8,6 @@
 #include "xsh_shell.h"
 
 void startProcess(const std::string& userInput){
-    std::cout << "Process starting: " << inputString << "\n";
     std::vector<std::string> commands;
     std::istringstream stream(userInput);
     std::string command;
@@ -18,6 +17,8 @@ void startProcess(const std::string& userInput){
         commands.push_back(command);
     }
 
+    // Variable to hold number of commands in stream
+    // Pipefds: multiple pairs of file descriptors
     int numCommands = commands.size();
     int pipefds[2 * (numCommands - 1)];
     
@@ -36,21 +37,15 @@ void startProcess(const std::string& userInput){
         pid = fork();
         
         if (pid == 0) {
-            // Redirect input from previous command
-            if (i != 0) {
-                if (dup2(pipefds[j - 2], 0) < 0) {
-                    perror("dup2");
-                    exit(EXIT_FAILURE);
-                }
-            }
+            // Redirect input from previous command 
             // Redirect output to next command
-            if (i != numCommands - 1) {
-                if (dup2(pipefds[j + 1], 1) < 0) {
+            if (i != 0 || i != numCommands - 1) {
+                if ((dup2(pipefds[j - 2], 0) < 0) || (dup2(pipefds[j + 1], 1) < 0)) {
                     perror("dup2");
                     exit(EXIT_FAILURE);
                 }
             }
-
+            
             // Close all pipe file descriptors
             for (int k = 0; k < 2 * (numCommands - 1); ++k) {
                 close(pipefds[k]);
