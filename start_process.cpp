@@ -38,9 +38,15 @@ void startProcess(const std::string& userInput){
         
         if (pid == 0) {
             // Redirect input from previous command 
+            if (i != 0) {
+                if (dup2(pipefds[j - 2], 0) < 0) {
+                    perror("dup2");
+                    exit(EXIT_FAILURE);
+                }
+            }
             // Redirect output to next command
-            if (i != 0 || i != numCommands - 1) {
-                if ((dup2(pipefds[j - 2], 0) < 0) || (dup2(pipefds[j + 1], 1) < 0)) {
+            if (i != numCommands - 1) {
+                if (dup2(pipefds[j + 1], 1) < 0){
                     perror("dup2");
                     exit(EXIT_FAILURE);
                 }
