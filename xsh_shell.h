@@ -8,6 +8,8 @@
 #ifndef XSH_SHELL
 #define XSH_SHELL
 #include <iostream>
+#include <cstdlib>
+#include <cstdio>
 #include <sstream>
 #include <vector>
 #include <unistd.h>

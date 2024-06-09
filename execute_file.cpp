@@ -19,7 +19,7 @@ void executeFile(const std::string& userInput) {
 
     // Check that there is not more than one argument
     if (args.size() != 1) {
-        std::cerr << "Error: Invalid number of arguments." << std::endl;
+        std::cerr << "Error: Invalid number of arguments.\n";
         return;
     }
 
@@ -32,13 +32,13 @@ void executeFile(const std::string& userInput) {
     pid_t pid = fork();
     if (pid == 0) { // Child process
         if (execvp(argv[0], argv.data()) < 0) {
-            perror("execvp");
-            exit(EXIT_FAILURE);
+            std::perror("execvp");
+            std::exit(EXIT_FAILURE);
         }
     } else if (pid > 0) { // Parent process waits for child to finish
         wait(NULL);
     } else { // Error creating fork
-        perror("fork");
-        exit(EXIT_FAILURE);
+        std::perror("fork");
+        std::exit(EXIT_FAILURE);
     }
 }

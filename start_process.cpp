@@ -26,8 +26,8 @@ void startProcess(const std::string& userInput){
     // pipefds[i * 2] to be read by the input pipefds[i * 2 + 1]
     for (int i = 0; i < (numCommands - 1); ++i) {
         if (pipe(pipefds + i * 2) < 0) {
-            perror("pipe");
-            exit(EXIT_FAILURE);
+            std::perror("pipe");
+            std::exit(EXIT_FAILURE);
         }
     }
 
@@ -42,15 +42,15 @@ void startProcess(const std::string& userInput){
             // Redirect input from previous command 
             if (i != 0) {
                 if (dup2(pipefds[j - 2], 0) < 0) {
-                    perror("dup2");
-                    exit(EXIT_FAILURE);
+                    std::perror("dup2");
+                    std::exit(EXIT_FAILURE);
                 }
             }
             // Redirect output to next command
             if (i != numCommands - 1) {
                 if (dup2(pipefds[j + 1], 1) < 0){
-                    perror("dup2");
-                    exit(EXIT_FAILURE);
+                    std::perror("dup2");
+                    std::exit(EXIT_FAILURE);
                 }
             }
             
@@ -75,12 +75,12 @@ void startProcess(const std::string& userInput){
 
             // If new process does not replace current process, throw error
             if (execvp(argv[0], argv.data()) < 0) {
-                perror("execvp");
-                exit(EXIT_FAILURE);
+                std::perror("execvp");
+                std::exit(EXIT_FAILURE);
             }
         } else if (pid < 0) { // Error creating child process
-            perror("fork");
-            exit(EXIT_FAILURE);
+            std::perror("fork");
+            std::exit(EXIT_FAILURE);
         }
 
         j += 2;
