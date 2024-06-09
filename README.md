@@ -11,10 +11,10 @@ Assignment 2, README
 
 ---
 
-XSH is a shell program that has two builtin functions:
-- Start Process
+XSH is a shell program that has two built-in functions:
+- **Start Process**
 	- lets users create processes that can be chained using pipes to communicate with each other
-- Run Program
+- **Run Program**
 	- lets users search for a file and run it in the shell if it is an executable
 
 ### Files Included
@@ -27,7 +27,7 @@ Files/Folders included in a2.zip:
 - xsh_shell.h: Header file for the shell
 - main.cpp: Main source file that takes user input and calls appropriate function.
 - execute_file.cpp: Source file for executeFile function. This file houses the logic for opening files using the shell.
-- start_process.cpp: Source file for startProcess function. This files houses the logic for chaining shell commands together and establishes a pipe between them.
+- start_process.cpp: Source file for startProcess function. This file houses the logic for chaining shell commands together and establishes a pipe between them.
 - testdir: Test directory that houses a sample program to run in `dsh`.
 - testdir/sample_program: Sample program that lets users enter their name or quit.
 
@@ -106,52 +106,52 @@ To exit the shell, run the command `exit`.
 
 ---
 
-###### One thing
+###### Modular Design
 
-- Modular Design: The project is organized into multiple source files (main.cpp, execute_file.cpp, and start_process.cpp), each handling specific parts of the shell functionality. This modular design helps with code readability, maintainability, and facilitates easier debugging and testing.
+The project is organized into multiple source files (`main.cpp`, `execute_file.cpp`, and `start_process.cpp`), each handling specific parts of the shell functionality. This modular design helps with code readability, maintainability, and the facilitation of easier debugging and testing.
 
-###### Two thing
+###### Process Management and Piping
 
--  Process Management and Piping: The shell is made to handle multiple processes and support piping between them. This is done by using fork() to create child processes and pipe() to set up communication between them. This design allows the shell to execute complex command sequences which involve pipes. This closely imitates the behavior of traditional Unix-like shells.
+The shell is made to handle multiple processes by using `fork()` to create child processes and supports piping between them by using `pipe()`. This design allows the shell to execute complex command sequences that involve pipes, which closely imitates the behavior of traditional UNIX-like shells.
 
-###### Three thing
+###### Input Handling, Command Execution, and File Execution
 
-- Input Handling and Command Execution: The shell reads user input in a loop, checking for specific commands like exit to terminate the shell. It also parses user input to detect pipes and decide whether to execute a single command or a series of piped commands. This decision makes sure that the shell can handle a variety of input scenarios efficiently and effectively.
+The shell reads user input in a loop, checking for specific commands such as `exit` to terminate the shell. It also parses user input to detect pipes and decides whether to execute a single command or a series of piped commands. Finally, it supports searching and executing an executable file. This decision ensures that the shell can handle a variety of input scenarios efficiently and effectively, properly process user-designated commands, and allow programs to be run by the user.
 
-### Other Features
+### Other Features (FIXME)
 
 ---
 
-- Dynamic Command Execution: The shell can execute a wide range of commands, which takes advantage of the underlying system's capabilities. This feature provides flexibility and extends the shell's usability.
-- Piping Between Processes: Implemented support for piping, which allows the output of one process to be used as the input for another. This feature enhances the shell's functionality and aligns with standard shell behavior.
+- **Dynamic Command Execution:** The shell can execute a wide range of commands, which takes advantage of the underlying system's capabilities. This feature provides flexibility and extends the shell's usability.
+- **Piping Between Processes:** Implemented support for piping, which allows the output of one process to be used as the input for another. This feature enhances the shell's functionality and aligns with standard shell behavior.
 
 ### Known Bugs
 
 ---
 
-- Edge Cases in Piping: Some edge cases might have a situation where piping might not work as expected, particularly with complex command sequences. This is an area that can be improved.
+- **Edge Cases in Piping:** Some edge cases might have a situation where piping might not work as expected, particularly with complex command sequences. This is an area that can be improved.
 
-- Race Conditions: Occasionally, when under high load, race conditions may occur when multiple threads try to write to the file simultaneously. 
+- **Race Conditions:** Occasionally, when under high load, race conditions may occur when multiple threads try to write to the file simultaneously. 
 
 
 ### Lessons Learned
 
 ---
 
-- Importance of Synchronization: One of the key takeaways from this project was understanding the crucial role of synchronization in concurrent programming. The proper use of semaphores is capable of significantly reducing the risk of data corruption.
+- **Importance of Synchronization:** One of the key takeaways from this project was understanding the crucial role of synchronization in concurrent programming. The proper use of semaphores is capable of significantly reducing the risk of data corruption.
 
-- Debugging Multithreaded Applications: We learned that is it challenging to debug multithreaded applications. Tools like VScode helped in finding and resolving issues related to thread behavior and memory management.
+- **Debugging Multithreaded Applications:** We learned that is it challenging to debug multithreaded applications. Tools such as VScode helped in finding and resolving issues related to thread behavior and memory management.
 
-- Shell Programming Fundamentals: Implementing a shell from scratch provided lots of information into how shells work, which includes command parsing, process management, and inter-process communication.
+- **Shell Programming Fundamentals:** Implementing a shell from scratch provided lots of information into how shells work, which includes command parsing, process management, and inter-process communication.
 
-- Effective Collaboration and Teamwork: Working in pairs showed the need for clear communication and division of tasks. We learned that regular code reviews and pair programming sessions on the Discord app can greatly enhance code quality and team productivity.
+- **Effective Collaboration and Teamwork:** Working in pairs showed the need for clear communication and division of tasks. We learned that regular code reviews and pair programming sessions on the Discord app can greatly enhance code quality and team productivity.
 
 
 ### Code Creation
 
 ---
 
-Jasmine:
+**Jasmine:**
 - `main.cpp`
 	- 1-34
 - `execute_file.cpp`
@@ -164,7 +164,7 @@ Jasmine:
 - `xsh_shell.h`
 	- 1-20
 
-Aeron:
+**Aeron:**
 - `execute_file.cpp`
 	- 11-30
 	- 33-37
