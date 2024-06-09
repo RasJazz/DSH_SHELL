@@ -7,10 +7,39 @@
 */
 #include "xsh_shell.h"
 
-void executeFile(std::string &inputString) {
-    std::cout << "User input was: " << inputString << "\n";
-    /*
-    NOTE: Use execvp() for searching for file
-    SEE OBSIDIAN NOTES FOR OTHER THINGS
-    */
+void executeFile(const std::string& userInput) {
+    std::istringstream cmdStream(userInput);
+    std::vector<std::string> args;
+    std::string arg;
+
+    while (cmdStream >> arg) {
+        args.push_back(arg);
+    }
+
+    // Check that there is not more than one argument
+    if (args.size() != 1) {
+        std::cerr << "Error: Invalid number of arguments." << std::endl;
+        return;
+    }
+
+    // Convert arguments to char* array
+    std::vector<char*> argv(args.size() + 1);
+    for (size_t i = 0; i < args.size(); ++i) {
+        argv[i] = &args[i][0];
+    }
+
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Child process
+        if (execvp(argv[0], argv.data()) < 0) {
+            perror("execvp");
+            exit(EXIT_FAILURE);
+        }
+    } else if (pid > 0) {
+        // Parent process
+        wait(NULL);
+    } else {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
 }

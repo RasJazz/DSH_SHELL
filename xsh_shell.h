@@ -8,9 +8,13 @@
 #ifndef XSH_SHELL
 #define XSH_SHELL
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <unistd.h>
+#include <sys/wait.h>
 
 // Function prototypes for starting processes, file execution
-void startProcess(std::string &);
-void executeFile(std::string &);
+void startProcess(const std::string&);
+void executeFile(const std::string&);
 
 #endif

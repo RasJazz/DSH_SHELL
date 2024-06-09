@@ -6,13 +6,11 @@
  ************************ main.cpp *************************
 */
 #include "xsh_shell.h"
-#include <iostream>
 
 int main(){
     // Runs shell until user indicates they would like to exit
+    std::string userInput;
     while(true){
-        std::string userInput;
-        
         // Output for user to indicate they are in the shell
         // input is being expected
         // userInput waits to collect input from user
@@ -21,14 +19,14 @@ int main(){
 
         // if userInput is exit, exits shell
         if (userInput == "exit") {
-            std::cout << "BYEEEEE\n";
+            std::cout << "Exiting shell\n";
             break;
         }
-        // if user input contians pipes, creates 2+ processes
+        // if user input contains pipes, creates 2+ processes
         // each process connected to last via pipe
         else if (userInput.find("|") != std::string::npos){
             /* 
-                          TO DO:
+            TO DO:
             - split input at pipes
             - check that correct number of arguments are there
             */
@@ -37,7 +35,7 @@ int main(){
         // else, user would like to execute a file and shell will search for it
         else {
             /* 
-                          TO DO:
+            TO DO:
             - error check there isn't more than 1 arg
             */
             executeFile(userInput);
