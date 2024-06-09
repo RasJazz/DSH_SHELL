@@ -1,4 +1,4 @@
-# XSH SHELL
+# DSH SHELL
 
 ---
 
@@ -11,7 +11,7 @@ Assignment 2, README
 
 ---
 
-XSH is a shell program that has two built-in functions:
+DSH is a shell program that has two built-in functions:
 - **Start Process**
 	- lets users create processes that can be chained using pipes to communicate with each other
 - **Run Program**
@@ -21,15 +21,15 @@ XSH is a shell program that has two built-in functions:
 
 ---
 
-Files/Folders included in a2.zip:
-- README.md: Details on the program and how to run it
-- Makefile: Makefile is used to compile the `dsh` executable
-- xsh_shell.h: Header file for the shell
-- main.cpp: Main source file that takes user input and calls appropriate function.
-- execute_file.cpp: Source file for executeFile function. This file houses the logic for opening files using the shell.
-- start_process.cpp: Source file for startProcess function. This file houses the logic for chaining shell commands together and establishes a pipe between them.
-- testdir: Test directory that houses a sample program to run in `dsh`.
-- testdir/sample_program: Sample program that lets users enter their name or quit.
+Files/Folders included in `a2.zip`:
+- `README.md`: Details on the program and how to run it
+- `Makefile`: Makefile used to compile the `dsh` executable
+- `xsh_shell.h`: Header file for the shell
+- `main.cpp`: Main source file that takes user input and calls appropriate function
+- `execute_file.cpp`: Source file for executeFile function. This file houses the logic for opening files using the shell
+- `start_process.cpp`: Source file for startProcess function. This file houses the logic for chaining shell commands together and establishes a pipe between them
+- `testdir`: Test directory that houses a sample program to run in shell
+- `testdir/sample.cpp`: Source file for sample program that lets users enter their name or quit
 
 ### Compile instructions
 
@@ -37,7 +37,7 @@ Files/Folders included in a2.zip:
 
 ##### Requirements:
 
-In order to compile the program, **G++ v.4.8.5** (or a similar compiler) that compiles **C++11** is needed.
+To compile the program, **G++ v.4.8.5** (or a similar compiler) that compiles **C++11** is needed.
 
 ###### File Installation
 1. Download `a2.zip` and extract the files to a directory of your choice.
@@ -85,6 +85,7 @@ total 272
 
 To open an executable, type in the path or file name to run it.
 - ex.
+
 ```
 cssc4427% ./testdir/sample_program
 Welcome to the sample program!
@@ -118,12 +119,11 @@ The shell is made to handle multiple processes by using `fork()` to create child
 
 The shell reads user input in a loop, checking for specific commands such as `exit` to terminate the shell. It also parses user input to detect pipes and decides whether to execute a single command or a series of piped commands. Finally, it supports searching and executing an executable file. This decision ensures that the shell can handle a variety of input scenarios efficiently and effectively, properly process user-designated commands, and allow programs to be run by the user.
 
-### Other Features (FIXME)
+### Other Features
 
 ---
 
-- **Dynamic Command Execution:** The shell can execute a wide range of commands, which takes advantage of the underlying system's capabilities. This feature provides flexibility and extends the shell's usability.
-- **Piping Between Processes:** Implemented support for piping, which allows the output of one process to be used as the input for another. This feature enhances the shell's functionality and aligns with standard shell behavior.
+- **Sample Program:** `sample.cpp` creates executable when `make` command run to test functionality of opening executable files
 
 ### Known Bugs
 
@@ -142,7 +142,7 @@ The shell reads user input in a loop, checking for specific commands such as `ex
 
 - **Debugging Multithreaded Applications:** We learned that is it challenging to debug multithreaded applications. Tools such as VScode helped in finding and resolving issues related to thread behavior and memory management.
 
-- **Shell Programming Fundamentals:** Implementing a shell from scratch provided lots of information into how shells work, which includes command parsing, process management, and inter-process communication.
+- **Shell Programming Fundamentals:** Implementing a shell from scratch provided lots of information about how shells work, which includes command parsing, process management, and inter-process communication.
 
 - **Effective Collaboration and Teamwork:** Working in pairs showed the need for clear communication and division of tasks. We learned that regular code reviews and pair programming sessions on the Discord app can greatly enhance code quality and team productivity.
 
@@ -163,6 +163,8 @@ The shell reads user input in a loop, checking for specific commands such as `ex
 	- 1-10
 - `xsh_shell.h`
 	- 1-20
+- `sample.cpp`
+	- 1-54
 
 **Aeron:**
 - `execute_file.cpp`
