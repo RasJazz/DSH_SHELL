@@ -14,22 +14,16 @@ CFLAGS = -g -c
 OBJECTS = $(FILES:.cpp=.o)
 
 # Sample Program
-EXEC = sample_program
-SAMPLE = testdir/sample.cpp
-SAMPLE_OUTPUT = testdir/$(EXEC)
+SAMPLE_PROG = sample_program
+SAMPLE = sample.cpp
 
 # Compile and create dsh executable file
 $(DSH_SHELL):$(OBJECTS)
 	$(CC) $(LFLAGS) -o $(DSH_SHELL) $(OBJECTS)
-	rm -f *.o
 
-# Compile and create sample_program executable in testdir directory
-$(SAMPLE_OUTPUT): $(OBJECTS) $(SAMPLE)
-	$(CC) $(LFLAGS) -o $(SAMPLE_OUTPUT) $(OBJECTS) $(SAMPLE)
-	rm -f *.o
-
-$(EXEC):$(OBJECTS)
-	$(CC) $(LFLAGS) -o $(EXEC) $(OBJECTS)
+# Compile and create sample_program executable
+$(SAMPLE_PROG):$(OBJECTS)
+	$(CC) $(LFLAGS) -o $(SAMPLE_PROG) $(OBJECTS)
 	rm -f *.o
 
 .cpp.o:
@@ -42,5 +36,5 @@ start_file.o: start_process.cpp xsh_shell.h
 	$(CC) $(CFLAGS) start_process.cpp 
 
 clean:
-	rm -f *.o $(DSH_SHELL)
+	rm -f *.o $(DSH_SHELL) $(SAMPLE_PROG)
 #######################[ EOF: Makefile ]###################
