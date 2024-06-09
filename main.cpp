@@ -1,7 +1,11 @@
-// Makefile for CS480, Summer 2024
-// Assignment #2: XSH
-// Aeron Flores (826123084) and Jasmine Rasmussen (129935517)
-// Edoras #s: Aeron - CSSC4404; Jasmine - CSSC4427 
+/*
+ ******************* Assignment #2: XSH ********************
+ ******************* CS480, Summer 2024 ******************** 
+ Aeron Flores (826123084) and Jasmine Rasmussen (129935517)
+ ***** Edoras #s: Aeron - CSSC4404; Jasmine - CSSC4427 ***** 
+ ************************ main.cpp *************************
+*/
+#include "xsh_shell.h"
 #include <iostream>
 
 int main(){
@@ -23,11 +27,20 @@ int main(){
         // if user input contians pipes, creates 2+ processes
         // each process connected to last via pipe
         else if (userInput.find("|") != std::string::npos){
-            std::cout << "PIPING HOT\n";
+            /* 
+                          TO DO:
+            - split input at pipes
+            - check that correct number of arguments are there
+            */
+           startProcess(userInput);
         }
         // else, user would like to execute a file and shell will search for it
         else {
-            std::cout << "You input a filename!\n";
+            /* 
+                          TO DO:
+            - error check there isn't more than 1 arg
+            */
+            executeFile(userInput);
         }
     }
 }

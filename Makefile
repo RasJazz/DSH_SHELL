@@ -5,8 +5,8 @@
 # Edoras #s: Aeron - CSSC4404; Jasmine - CSSC4427 
 ###########################################################
 EXEC = dsh
-FILES = main.cpp #chatbot.cpp
-#HEADERS = chatbot.h 
+FILES = main.cpp execute_file.cpp start_process.cpp
+HEADERS = xsh_shell.h 
 CC = g++
 LFLAGS = -g #-pthread
 CFLAGS = -g -c #-pthread
@@ -19,9 +19,12 @@ $(EXEC):$(OBJECTS)
 .cpp.o:
 	$(CC) $(CFLAGS) $<
 
-# chatbot.o: chatbot.cpp chatbot.h 
-# 	$(CC) $(CFLAGS) chatbot.cpp
+execute_file.o: execute_file.cpp xsh_shell.h 
+	$(CC) $(CFLAGS) execute_file.cpp 
+
+start_file.o: start_process.cpp xsh_shell.h 
+	$(CC) $(CFLAGS) start_process.cpp 
 
 clean:
-	rm -f $(EXEC)
+	rm -f *.o $(EXEC)
 #######################[ EOF: Makefile ]###################
