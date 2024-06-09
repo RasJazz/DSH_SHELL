@@ -108,33 +108,44 @@ To exit the shell, run the command `exit`.
 
 ###### One thing
 
-- Blah
+- Modular Design: The project is organized into multiple source files (main.cpp, execute_file.cpp, and start_process.cpp), each handling specific parts of the shell functionality. This modular design helps with code readability, maintainability, and facilitates easier debugging and testing.
 
 ###### Two thing
 
-- Blah
+-  Process Management and Piping: The shell is made to handle multiple processes and support piping between them. This is done by using fork() to create child processes and pipe() to set up communication between them. This design allows the shell to execute complex command sequences which involve pipes. This closely imitates the behavior of traditional Unix-like shells.
 
 ###### Three thing
 
-- Blah
+- Input Handling and Command Execution: The shell reads user input in a loop, checking for specific commands like exit to terminate the shell. It also parses user input to detect pipes and decide whether to execute a single command or a series of piped commands. This decision makes sure that the shell can handle a variety of input scenarios efficiently and effectively.
 
 ### Other Features
 
 ---
 
-- Blahblahblah
+- Dynamic Command Execution: The shell can execute a wide range of commands, which takes advantage of the underlying system's capabilities. This feature provides flexibility and extends the shell's usability.
+- Piping Between Processes: Implemented support for piping, which allows the output of one process to be used as the input for another. This feature enhances the shell's functionality and aligns with standard shell behavior.
 
 ### Known Bugs
 
 ---
 
-- Blahblahblah
+- Edge Cases in Piping: Some edge cases might have a situation where piping might not work as expected, particularly with complex command sequences. This is an area that can be improved.
+
+- Race Conditions: Occasionally, when under high load, race conditions may occur when multiple threads try to write to the file simultaneously. 
+
 
 ### Lessons Learned
 
 ---
 
-- Blahblahblah
+- Importance of Synchronization: One of the key takeaways from this project was understanding the crucial role of synchronization in concurrent programming. The proper use of semaphores is capable of significantly reducing the risk of data corruption.
+
+- Debugging Multithreaded Applications: We learned that is it challenging to debug multithreaded applications. Tools like VScode helped in finding and resolving issues related to thread behavior and memory management.
+
+- Shell Programming Fundamentals: Implementing a shell from scratch provided lots of information into how shells work, which includes command parsing, process management, and inter-process communication.
+
+- Effective Collaboration and Teamwork: Working in pairs showed the need for clear communication and division of tasks. We learned that regular code reviews and pair programming sessions on the Discord app can greatly enhance code quality and team productivity.
+
 
 ### Code Creation
 
