@@ -22,7 +22,8 @@ void startProcess(const std::string& userInput){
     int numCommands = commands.size();
     int pipefds[2 * (numCommands - 1)];
     
-    // Create pipes
+    // Create pipes by connecting the output command 
+    // pipefds[i * 2] to be read by the input pipefds[i * 2 + 1]
     for (int i = 0; i < (numCommands - 1); ++i) {
         if (pipe(pipefds + i * 2) < 0) {
             perror("pipe");
@@ -36,6 +37,7 @@ void startProcess(const std::string& userInput){
     for (int i = 0; i < numCommands; ++i) {
         pid = fork();
         
+        // Child process
         if (pid == 0) {
             // Redirect input from previous command 
             if (i != 0) {
@@ -71,11 +73,12 @@ void startProcess(const std::string& userInput){
                 argv[k] = &args[k][0];
             }
 
+            // If new process does not replace current process, throw error
             if (execvp(argv[0], argv.data()) < 0) {
                 perror("execvp");
                 exit(EXIT_FAILURE);
             }
-        } else if (pid < 0) {
+        } else if (pid < 0) { // Error creating child process
             perror("fork");
             exit(EXIT_FAILURE);
         }

@@ -12,6 +12,7 @@ void executeFile(const std::string& userInput) {
     std::vector<std::string> args;
     std::string arg;
 
+    // Create vector out of arguments in input
     while (cmdStream >> arg) {
         args.push_back(arg);
     }
@@ -29,16 +30,14 @@ void executeFile(const std::string& userInput) {
     }
 
     pid_t pid = fork();
-    if (pid == 0) {
-        // Child process
+    if (pid == 0) { // Child process
         if (execvp(argv[0], argv.data()) < 0) {
             perror("execvp");
             exit(EXIT_FAILURE);
         }
-    } else if (pid > 0) {
-        // Parent process
+    } else if (pid > 0) { // Parent process waits for child to finish
         wait(NULL);
-    } else {
+    } else { // Error creating fork
         perror("fork");
         exit(EXIT_FAILURE);
     }
