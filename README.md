@@ -2,8 +2,7 @@
 
 ---
 
-Created By: Aeron Flores (826123084) and Jasmine Rasmussen (129935517)
-Edoras: Aeron (CSSC4404); Jasmine (CSSC4427)
+Created By: Aeron Flores and Jasmine Rasmussen
 CS480, Summer 2024 
 Assignment 2, README
 
