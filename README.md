@@ -2,9 +2,9 @@
 
 ---
 
-Created By: Aeron Flores and Jasmine Rasmussen
-CS480, Summer 2024 
-Assignment 2, README
+Aeron Flores and Jasmine Rasmussen<br>
+_CS480, Summer 2024 <br>_
+DSH Shell README<br>
 
 ### Overview
 
@@ -122,7 +122,7 @@ The shell reads user input in a loop, checking for specific commands such as `ex
 
 ---
 
-- **Sample Program:** `sample.cpp` creates executable when `make` command run to test functionality of opening executable files
+- **Sample Program:** `sample.cpp` creates executable when `make` command runs to test functionality of opening executable files
 
 ### Known Bugs
 
